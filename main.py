@@ -1,6 +1,6 @@
 from datetime import datetime
 
-listarEventos = []
+listaEventos = []
 
 print("Bem-vindo ao sistema de gerenciamento de eventos BFD!")
 
@@ -31,3 +31,15 @@ def adicionarEvento(listaEventos, nome, data, local, categoria):
     listaEventos.append(novoEvento)
     print(f"Evento '{nome}' adicionado com sucesso!")
     return True
+def ListarEventos(listaEventos):
+    print("Lista de Eventos:")
+    if not listaEventos:
+        print("Nenhum evento cadastrado.")
+    else:
+        for evento in listaEventos:
+            print(f"{evento['nome']}")
+            print(f"Data: {evento['data']}")
+            print(f"Local: {evento['local']}")
+            print(f"Categoria: {evento['categoria']}")
+            print("-" * 20)
+                
