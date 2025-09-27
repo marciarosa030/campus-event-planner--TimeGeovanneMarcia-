@@ -1,20 +1,33 @@
-eventoBFD = {}
+from datetime import datetime
+
+listarEventos = []
 
 print("Bem-vindo ao sistema de gerenciamento de eventos BFD!")
 
+def validacaoData(dataStr):
+    try:
+        datetime.strptime(dataStr, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False
+
 def adicionarEvento(listaEventos, nome, data, local, categoria):
-    evento = {
+    if listaEventos == "" or nome == "" or data == "" or local == "" or categoria == "":
+        print("Erro: Todos os campos devem ser preenchidos.")
+        return False
+    if not validacaoData(data):
+        print("Erro: Data inválida. Use o formato DD/MM/AAAA.")
+        return False
+    for criacaoEvento in listaEventos:
+        if criacaoEvento["nome"] == nome:
+            print("Erro: Já existe um evento com esse nome.")
+            return False
+    novoEvento = {
         "nome": nome,
         "data": data,
         "local": local,
         "categoria": categoria
     }
-    listaEventos.append(evento)
-    
-nome = input("Digite o nome do evento: ")
-data = input("Digite a data do evento (DD/MM/AAAA): ")
-local = input("Digite o local do evento: ")
-categoria = input("Digite a categoria do evento: ")
-
-
-print(f"Evento '{nome}' adicionado com sucesso!")
+    listaEventos.append(novoEvento)
+    print(f"Evento '{nome}' adicionado com sucesso!")
+    return True
