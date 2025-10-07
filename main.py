@@ -1,26 +1,21 @@
 print ("Ola mundo")
 
-import gerenciador_eventos as ge
-import interface_usuario as iu
-import os
-import time
 from typing import List, Dict, Any
 
 Event = Dict[str, Any]
 
-def addEvent(lista_eventos: List[Event], nome: str, data: str, local: str, categoria: str) -> None:
+def addEvent(lista_eventos: List[Event], nome: str, data: str, local: str, categoria: str):
     novo_id = max([ev.get("id", 0) for ev in lista_eventos], default=0) + 1
     evento = {
         "id": novo_id,
         "nome": nome,
         "data": data,
         "local": local,
-        "categoria": categoria,
-        "participado": False
+        "categoria": categoria
     }
     lista_eventos.append(evento)
 
-def filtrarEvento(lista_eventos: List[Event]) -> None:
+def filtrarEvento(lista_eventos: List[Event]):
     for ev in lista_eventos:
         status = "Sim" if ev.get('participado', False) else "Não"
         print(
@@ -47,7 +42,8 @@ def displayMenu():
     print("1. Adicionar evento")
     print("2. Filtrar eventos")
     print("3. Procurar eventos")
-    print("4. Deletar evento")
+    print("4. Filtrar por categoria")
+    print("5. Deletar evento")
     print("0. Sair")
 
 def getEscolhaDoUsuario():
@@ -56,7 +52,7 @@ def getEscolhaDoUsuario():
     except ValueError:
         return -1
 
-def filtrarEventosPorCategoria(eventos, categoria):
+def filtrarPorCategoria(eventos, categoria):
     filtrados = [e for e in eventos if e["categoria"].lower() == categoria.lower()]
     if not filtrados:
         print("Nenhum evento nessa categoria.")
@@ -65,7 +61,7 @@ def filtrarEventosPorCategoria(eventos, categoria):
             status = "✔️" if e["participado"] else "❌"
             print(f"{e['id']}. {e['nome']} {status}")
 
-def marcarEventoAtendido(eventos, id_evento):
+def marcarEvento(eventos, id_evento):
     for e in eventos:
         if e["id"] == id_evento:
             e["participado"] = True
