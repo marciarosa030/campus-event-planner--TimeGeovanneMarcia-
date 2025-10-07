@@ -49,3 +49,9 @@ def displayMenu():
     print("3. Procurar eventos")
     print("4. Deletar evento")
     print("0. Sair")
+
+def getEscolhaDoUsuario():
+    try:
+        return int(input("Escolha: "))
+    except ValueError:
+        return -1
