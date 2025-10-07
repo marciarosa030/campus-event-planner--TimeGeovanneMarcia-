@@ -42,5 +42,10 @@ def deleteEvento(lista_eventos: List[Event], id_evento: int) -> bool:
             return True
     return False
 
-
-        
+def displayMenu():
+    print("\n===== MENU =====")
+    print("1. Adicionar evento")
+    print("2. Filtrar eventos")
+    print("3. Procurar eventos")
+    print("4. Deletar evento")
+    print("0. Sair")
