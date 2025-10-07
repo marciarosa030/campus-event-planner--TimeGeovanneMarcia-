@@ -55,3 +55,12 @@ def getEscolhaDoUsuario():
         return int(input("Escolha: "))
     except ValueError:
         return -1
+
+def filtrarEventosPorCategoria(eventos, categoria):
+    filtrados = [e for e in eventos if e["categoria"].lower() == categoria.lower()]
+    if not filtrados:
+        print("Nenhum evento nessa categoria.")
+    else:
+        for e in filtrados:
+            status = "✔️" if e["participado"] else "❌"
+            print(f"{e['id']}. {e['nome']} {status}")
