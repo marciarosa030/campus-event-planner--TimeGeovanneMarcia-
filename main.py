@@ -87,3 +87,30 @@ def gerarRelatorio(eventos):
     print(f"Participados: {participados} ({participados/total*100:.1f}%)")
     for c, q in categorias.items():
         print(f"{c}: {q}")
+
+def main():
+    eventos = []
+    while True:
+        displayMenu()
+        op = getEscolhaDoUsuario()
+        if op == 1:
+            adicionarEvento(eventos)
+        elif op == 2:
+            visualizarEventos(eventos)
+        elif op == 3:
+            filtrarEventosPorCategoria(eventos, input("Categoria: "))
+        elif op == 4:
+            try:
+                marcarEventoAtendido(eventos, int(input("ID: ")))
+            except ValueError:
+                print("ID inválido.")
+        elif op == 5:
+            gerarRelatorio(eventos)
+        elif op == 0:
+            print("Saindo...")
+            break
+        else:
+            print("Opção inválida.")
+
+if __name__ == "__main__":
+    main()
