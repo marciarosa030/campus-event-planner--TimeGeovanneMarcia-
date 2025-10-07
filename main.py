@@ -72,3 +72,18 @@ def marcarEventoAtendido(eventos, id_evento):
             print("Evento marcado como participado!")
             return
     print("ID não encontrado.")
+
+def gerarRelatorio(eventos):
+    if not eventos:
+        print("Nenhum evento para relatar.")
+        return
+    total = len(eventos)
+    participados = sum(e["participado"] for e in eventos)
+    categorias = {}
+    for e in eventos:
+        categorias[e["categoria"]] = categorias.get(e["categoria"], 0) + 1
+    print("\n===== RELATÓRIO =====")
+    print(f"Total: {total}")
+    print(f"Participados: {participados} ({participados/total*100:.1f}%)")
+    for c, q in categorias.items():
+        print(f"{c}: {q}")
