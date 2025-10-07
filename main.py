@@ -64,3 +64,11 @@ def filtrarEventosPorCategoria(eventos, categoria):
         for e in filtrados:
             status = "✔️" if e["participado"] else "❌"
             print(f"{e['id']}. {e['nome']} {status}")
+
+def marcarEventoAtendido(eventos, id_evento):
+    for e in eventos:
+        if e["id"] == id_evento:
+            e["participado"] = True
+            print("Evento marcado como participado!")
+            return
+    print("ID não encontrado.")
